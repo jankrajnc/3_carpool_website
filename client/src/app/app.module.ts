@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { MainLayoutComponent } from '../layouts/main-layout/main-layout.component'
 import { LoginComponent } from '../pages/login/login.component';
 
 import {MaterialModule} from '../assets/material.module';
@@ -12,6 +14,7 @@ import {MaterialModule} from '../assets/material.module';
 @NgModule({
   declarations: [
     AppComponent,
+    MainLayoutComponent,
     LoginComponent
   ],
   imports: [
