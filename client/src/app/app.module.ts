@@ -7,15 +7,18 @@ import { AppComponent } from './app.component';
 
 import { MainLayoutComponent } from '../layouts/main-layout/main-layout.component'
 import { LoginComponent } from '../pages/login/login.component';
+import { CarpoolGroupComponent } from '../pages/carpool-group/carpool-group.component';
 
 import {MaterialModule} from '../assets/material.module';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutComponent,
-    LoginComponent
+    LoginComponent,
+    CarpoolGroupComponent
   ],
   imports: [
     BrowserModule,
