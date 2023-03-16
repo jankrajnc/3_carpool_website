@@ -1,12 +1,12 @@
 #### Overview:
-  Temp
+  A fairly simple website used as a practice exercise during my mentorship.
 
 #### Description:
   This is a carpool sharing website meant for people who often drive together to the same destination. The users create a common group that logs the information of their drives. The website offers an overview of all the drives as well as gives suggestions on who the next driver should be. It's also possible to set users as guests/inactive and they will be greyed out and no longer applicable for the next driver suggestions.
 
 #### Functionality:
   - **Routes:**
-    - 
+    - /login => A form where the user authenticates himself.
   - **Other:**
     - 
 
@@ -29,7 +29,6 @@
   - **Frontend:**
 	- Angular material (visuals) => I haven't used it before so I want to try it out, and after some research it doesn't seem like there is strong concensus on which visual library is better. Each have their pros and cons, and some unique or more complex elements. It seems that it's down to preference.
 	- Karma + Jasmin (testing) => The default testing libraries that come with Angular. I don't think they're any worse or better than others, but if it already comes with the project we might as well use it. I haven't done a lot of front end testing so for the beginning it should suffice.
-	- Pino (logging) => Logging libraries seem simple so the choice doesn't seem to matter that much. I'll pick Pino in this case as I've already used the popular logging library Winston.
 #### TODOs:
   - 
   
