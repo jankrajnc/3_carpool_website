@@ -1,33 +1,43 @@
-# Meetup 3 (17.3.2023)
+### Description
+This is a document containing all my questions to my mentor. Their priority is based on what's relevant for the next session of work. It's sorted by meetups in a chronological order, with a pool of unanswered questions at the bottom.
 
-css, kako se to dobro naucis oz privadis kot programer, ki se s tem veliko ne ukvarja? je to neka stvar s katero se sploh veliko programerjev ukvarja?
+### Meetup 3 (17.3.2023)
+- Is this type of a folder and UI structure ok? ../carpool-group/add-group OR ../carpool-group/edit-group OR ../carpool-group/view-group
+    - It's fine.
 
-kako drzis to vso znanje, ko toliko nekih stvari dodajas, plus se enih stvari ne dotaknes nekaj mesecev/let?
+- Should I start writing tests immediately or do some more work before?
+    - Start testing.
+
+- What's the best way of loading dynamic content based on ID? Via arguments in the URL path? Like URL/user/1 OR URL?user=1?
+    - Look into REST specification (https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/).
+
+- How do you properly update used libraries and dependencies?
+    - If the functionality is as we want it, then you just update the minor version (for example 2.3.X), which updates vulnerabilities, but should leave the current functionality untouched. I believe "npm fix" is used for that.
+    - Proper libraries also update legacy versions with vulnerability fixes, but eventually you'll need to upgrade to a newer version. When dealing with major version updates it's best to look at the documentation on how to change old functionality to the new one.
+    - You should regularly update libraries so that you fix problems as they arrive, plus that you don't fall too far behind.
+    - Here's how I would go about updating multiple libraries in an application: First update all minor versions and fix those where the functionality has broken. Afterwards I'd update major versions one by one, fix all issues and test it, before moving to the next one.
+
+- What exactly do you do as an architect? I understand that you build a projects structure, but what about when that is already done? Do you also do tasks or do you update libraries or documentation? Or do you look at what you could add to the project? Or are you also like a high level programmer that deals with some important problems?
+    - The main job is to look into new technical things. Like how to properly deal with HTML to PDF conversion, making a Proof-of-Concept before use, how to connect the different services, do you use HTTP or events, what DBs to use; basically you're dealing with internal and external architecture.
+    - There's always something new to look at, like we were thinking abou packaging C# code into Blazer, if it would run the application faster or better, but I found out that .NET doesn't support such things just yet.
+    - I'm also bettering what we currently have, like what new can we add to make this better. I usually have 2 lists, one of new things and one of improvements. For example, the new thing is Blazer and the improvement is switching from SQL Server to Postgresql.
+    - How do you know that something new is useful and good? Where do you find these new things? 
+        - Usually I look at the release notes of the major libraries, like .NET or TypeScript. You test it, and then start using it, and other people start copying what you're doing and slowly you get them all used to it.
+        - The major changes usually find me by luck, suddenly everyone and everywhere is talking about it, then you check it out and try incorporating it. This is how I found out and started using microservices.
+
+### Meetup 4 (31.3.2023)
+
+
+### Question pool
+
+- In regards to CSS, how do you learn this well or get used to it as a programmer, who doesn't use it much? I'm guessing this is a things that most developers don't deal with often?
+
+- How do you keep all this knowledge that you accumulate through the years, especially as you don't touch it for several months or years? I think I forgot a decent amount of things due to time.
   
-logika/uporaba interfacov, rad bi razumel kdaj se jih splaca uporabiti, kdaj ne, ker jih uporabljam in razumem kaj so, samo ne vem pa kdaj bi jih samo ustvaril, da bi bili uporabni in ne odvec
-  
-kako lokalno uravnavati razlicne verzije "globalnih" knjiznic med projekti? recimo angular ali nodejs, ustvaris samo lokalne verzije, varjanta vsak projekt ima svojo verzijo globalne pa nimas?
-  
-struktura ../carpool-group/[add-group] || [edit-group] || [view-group]
-    - je ok
-  
-najboljsi nacin nalaganja dinamicne vsebine glede na ID? preko argumentov v URL pathu? varjanta [URL]/user/1 ali [URL]/user=1
-    - poglej REST specifikacijo (mogoce tale? https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/)
+- What's the logic or usage of interfaces? I'd like to understand when it's worth using them and when not, because I use them and I understand what they are, but I'm not completely sure when to create them to be useful and not just be worthless.
 
-debug? je vredno debug nastaviti kar v IDE-u ali naj se debuggira kar preko spleta?
+- How do you deal with different library versions between projects, especially the key ones, like Angular or Node? Do you just install them in the project folder for that project and skip the global versions?
 
-testing?
-    - kar zacni s testi
+- What's the best way to debug the front-end part of the web application? Is it worth it to set everything inside the IDE to debug or do you just do it via the web console?
 
-uporabni vmesniki za VS code
-
-kako posodabljati knjiznice
-    - ce je funkcionalnost v redu, samo updatas minor verzijo da se vulnerability popravi (npm fix?), funkcionalnost pa "naceloma" ne; ali pa vse updatas na latest pa moras gledat dokumentacijo kako popravit; resne knjiznice popravljajo tudi verzije za nazaj, samo ne prevec nazaj
-    - moras posodabljati, da odstranjujes probleme, plus da ne zastaras
-    - najprej vse minor, popraviti pokvarjene, pol pa knjiznica po knjiznica za major verzije
-
-kaj delas kot arhitekt? razumem da gradis strukturo, samo kaj pa ko je to ze narejeno? delas tudi taske, ali posodabljas knjiznice ali dokumentacijo, ali gledas kaj drugega bi se lahko dodali v projekt, kar bi bilo uporabno, ali si tudi kot nek high level programer, ki se ukvarja z nekimi problemi na produkciji, deployi, taski, pomoc ekipam, ipd.?
-    - nove tehnicne stvari; kak nekaj narediti - html to pdf recimo; proof of concept pred uporabo; kako so service med sabo uporabljeni, ali https ali eventi, baze, storage - torej internal in external arhitektura;
-    - vedno je nekaj novega, vedno je veliko; blazer koda, ce zapakiras c# pa ali bolje/hitreje laufa
-    - izboljsat kaj je, kaj lahko dodamo nekaj novega; 2 seznama; recimo document service je na SQL server namesto na postgresql; nova pa je blazer
-    - kako ves da je nekaj novega dobro? release notes za TS zadnje leto pregledas; zacnes uporabljati pa drugi kopirajo tvoj stil; po vecini se gledajo release notes glavnih knjiznic (.NET, TS, VS); za vecje stvari, recimo microservice, pa samo pride po (ne)sreci
+- What are some useful extensions for VS Code? How do you find some that actually bring value and don't bloat your IDE?
