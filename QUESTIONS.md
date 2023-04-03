@@ -29,6 +29,7 @@ This is a document containing all my questions to my mentor. Their priority is b
 
 
 ### Question pool
+- How do you determine if the requested website application is complex and requires something like Angular + .NET, compared to it being simple and just requiring WordPress?
 
 - So usually we get data into some page by parsing the URL arguments and then calling the database. But in cases where we need some additional data, how to we move it from one page to another? Do you use cookies or session storage or local storage? Is there some correct way of handling these storage types, like how long they're valid and when they're deleted?
 

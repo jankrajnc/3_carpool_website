@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
+import { MaterialModule } from 'src/assets/material.module';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { LoginComponent } from './login.component';
 
@@ -15,32 +14,14 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LoginComponent]
-    })
-      .compileComponents();
-
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      imports: [ReactiveFormsModule, MatButtonModule, MatToolbarModule, MatCardModule ],
-      providers: [
-        { provide: FormBuilder, useValue: formBuilder },
-        { provide: Router, useValue: router }
-      ]
+      imports: [ReactiveFormsModule, MaterialModule, provideAnimations()],
+      providers: [FormBuilder, Router]
     })
       .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
-    formBuilder = TestBed.inject(FormBuilder);
-    router = TestBed.inject(Router);
     fixture.detectChanges();
   });
 
@@ -82,3 +63,4 @@ describe('LoginComponent', () => {
   });
 
 });
+
