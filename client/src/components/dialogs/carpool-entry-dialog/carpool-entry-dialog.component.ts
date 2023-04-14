@@ -12,16 +12,16 @@ export class CarpoolEntryDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<CarpoolEntryDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: CarpoolEntry,
-  ) 
+  )
   {
-    /*if(this.data == null){
-      this.data = new CarpoolEntry[];
-    }*/
+    if(this.data == null){
+      this.data = {name: '', date: new Date()};
+    }
 
   }
 
   public test123(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(this.data);
   }
 
   public closeDialog(): void {
