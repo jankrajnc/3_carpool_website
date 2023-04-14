@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MaterialModule} from '../assets/material.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +10,8 @@ import { MainLayoutComponent } from '../layouts/main-layout/main-layout.componen
 import { LoginComponent } from '../pages/login/login.component';
 import { CarpoolGroupComponent } from '../pages/carpool-group/carpool-group.component';
 
-import {MaterialModule} from '../assets/material.module';
+import { DeletionDialogComponent } from '../components/dialogs/deletion-dialog/deletion-dialog.component';
+import { CarpoolEntryDialogComponent } from '../components/dialogs/carpool-entry-dialog/carpool-entry-dialog.component';
 
 
 
@@ -18,7 +20,9 @@ import {MaterialModule} from '../assets/material.module';
     AppComponent,
     MainLayoutComponent,
     LoginComponent,
-    CarpoolGroupComponent
+    CarpoolGroupComponent,
+    DeletionDialogComponent,
+    CarpoolEntryDialogComponent
   ],
   imports: [
     BrowserModule,
