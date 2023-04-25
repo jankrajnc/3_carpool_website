@@ -25,7 +25,7 @@ This is a document containing all my questions to my mentor. Their priority is b
         - Usually I look at the release notes of the major libraries, like .NET or TypeScript. You test it, and then start using it, and other people start copying what you're doing and slowly you get them all used to it.
         - The major changes usually find me by luck, suddenly everyone and everywhere is talking about it, then you check it out and try incorporating it. This is how I found out and started using microservices.
 
-### Meetup 4 (14.4.2023)
+### Meetup 5 (14.4.2023)
 - How do you properly deal with booleans, dates, etc. between the database, backend and UI? Do you store it as numbers or strings and then parse it?
     - The database stores the different data types as it does, there's nothing you can do about that. Obviously you should use the correct data type and not use strings to store "true" or "false". Then it becomes language dependent. C# will automatically convert the data into something that's valid for it, like transforming the date from the database to its own DateTime format. Then again it depends on your application. Some data between C# and JS might be the same, so you can just pass it forward, but some data might need additional transformations at the endpoint, to be properly displayed on the UI. Usually you transform the data to the correct format before storing it in an array of objects, or whatever you have in your case. You can easily do this with pipelines in JS.
 
@@ -37,6 +37,10 @@ This is a document containing all my questions to my mentor. Their priority is b
 
 - What's the best way to debug the front-end part of the web application? Is it worth it to set everything inside the IDE to debug or do you just do it via the web console?
     - That's up to you, both approaches are fine, though I prefer to debug via the web console. If you have multiple UI projects running, which are connected between each other, like we have, then it is definitely easier to just use the web console, instead of having to run every project on its own in debug mode.
+
+### Meetup 6 (26.4.2023)
+- How do you properly manipulate data on the UI when doing CRUD operations? If we take deletion for example, do you delete the entry from the database and do a refresh or do you delete from the database and then manually remove it from the UI?
+    - TEMP
 
 ### Question pool
 - How do you determine if the requested website application is complex and requires something like Angular + .NET, compared to it being simple and just requiring WordPress?

@@ -15,13 +15,8 @@ export class CarpoolEntryDialogComponent {
   )
   {
     if(this.data == null){
-      this.data = {name: '', date: new Date()};
+      this.data = {name: '', date: new Date().toISOString().split('T')[0]};
     }
-
-  }
-
-  public test123(): void {
-    this.dialogRef.close(this.data);
   }
 
   public closeDialog(): void {

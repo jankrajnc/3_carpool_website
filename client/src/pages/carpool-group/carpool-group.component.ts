@@ -5,9 +5,9 @@ import { DeletionDialogComponent } from 'src/components/dialogs/deletion-dialog/
 import { CarpoolEntry } from 'src/models/interfaces/carpool-entry';
 
 const CARPOOL_ENTRY_DATA: CarpoolEntry[] = [
-  {date: new Date("2023-02-22"), name: 'Grega'},
-  {date: new Date("2023-02-23"), name: 'Jan'},
-  {date: new Date("2023-02-24"), name: 'Martin'},
+  {id: 1, date: new Date("2023-02-22").toISOString().split('T')[0], name: 'Grega'},
+  {id: 2, date: new Date("2023-02-23").toISOString().split('T')[0], name: 'Jan'},
+  {id: 3, date: new Date("2023-02-24").toISOString().split('T')[0], name: 'Martin'},
 ];
 
 @Component({
@@ -21,6 +21,15 @@ export class CarpoolGroupComponent {
 
   public displayedColumns: string[] = ['date', 'name', 'actions'];
   public dataSource = CARPOOL_ENTRY_DATA;
+
+  public addEntry(): void {
+    const entryDialog = this.dialog.open(CarpoolEntryDialogComponent);
+
+    entryDialog.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
 
   public editEntry(selectedRow: CarpoolEntry): void{
     console.log(selectedRow);
@@ -44,15 +53,6 @@ export class CarpoolGroupComponent {
       if(result == true){
         console.log('test');
       }
-    });
-  }
-
-  public addEntry(): void {
-    const entryDialog = this.dialog.open(CarpoolEntryDialogComponent);
-
-    entryDialog.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
     });
   }
 

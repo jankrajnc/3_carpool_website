@@ -1,4 +1,5 @@
 export interface CarpoolEntry {
-    date: Date;
+    id?: number;
+    date: string;
     name: string;
   }
