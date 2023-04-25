@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CarpoolEntryDialogComponent } from 'src/components/dialogs/carpool-entry-dialog/carpool-entry-dialog.component';
 import { DeletionDialogComponent } from 'src/components/dialogs/deletion-dialog/deletion-dialog.component';
-import { CarpoolEntry } from 'src/models/interfaces/carpool-entry';
+import { CarpoolEntry } from 'src/models/carpool-entry';
 
 const CARPOOL_ENTRY_DATA: CarpoolEntry[] = [
   {id: 1, date: new Date("2023-02-22").toISOString().split('T')[0], name: 'Grega'},

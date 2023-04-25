@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CarpoolEntry } from 'src/models/interfaces/carpool-entry';
+import { CarpoolEntry } from 'src/models/carpool-entry';
 
 @Component({
   selector: 'app-carpool-entry-dialog',
