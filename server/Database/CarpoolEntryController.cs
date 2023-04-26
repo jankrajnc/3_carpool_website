@@ -1,9 +1,14 @@
 using System.Collections;
 using Models;
 
-namespace Database { 
+namespace Database {
 
-    public class CarpoolEntryController
+    // https://learn.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-7.0
+    // https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-7.0&amp%3Btabs=visual-studio&tabs=visual-studio
+    // https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-7.0&tabs=visual-studio#routing-and-url-paths
+
+    [Route("api/[controller]")]
+    public class CarpoolEntryController : ControllerBase
     {
 
         private static List<CarpoolEntry> _entries = new List<CarpoolEntry>()

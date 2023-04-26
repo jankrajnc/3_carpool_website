@@ -40,17 +40,31 @@ This is a document containing all my questions to my mentor. Their priority is b
 
 ### Meetup 6 (26.4.2023)
 - How do you properly manipulate data on the UI when doing CRUD operations? If we take deletion for example, do you delete the entry from the database and do a refresh or do you delete from the database and then manually remove it from the UI?
-    - TEMP
+    - oboje je pravilno, odvnisno od aplikacije, pa kaj je boljse za uporabnika
+
+    strukura serverja
+    - controller ki klice repository (delo z podatki oz bazo) ki ima CRUD operacije z EF, kaj bolj kompleksnega (business logika) je potem narejeno v kontrollerju, dokler ni uporabno za kaj drugega in se pol poda v vsoj repositorij
+
+    container URL in podobnih
+    v env vars, naredis TS skripto pa jo klices v package.json, poglej si update-version v pe-ui v package.json ali kaj podobnega
+    https://angular.io/guide/build
+
+    - So usually we get data into some page by parsing the URL arguments and then calling the database. But in cases where we need some additional data, how to we move it from one page to another? Do you use cookies or session storage or local storage? Is there some correct way of handling these storage types, like how long they're valid and when they're deleted?
+     odvisno od situacije, lokalno manjse, majn pomembne zadeve, url v srednje zadeve oz kar je pametno deliti, v bazo pa zelo pomembne stvari, ki hocemo da ima user vedno
+
+- How do you deal with different library versions between projects, especially the key ones, like Angular or Node? Do you just install them in the project folder for that project and skip the global versions?
+    node recimo mora biti globalno ampak je backwards in frontwards compatible, angular pa lahko mas samo lokalno, angular oz node ima "npx" klic kot "npx ng version" namesto "ng version" pa klice angular iz npm modules namesto lokalno, npx lahko tudi uporabljas da poklices kako knjiznico enkrat kot neko skripto namesto da vse preneses v projekt
+
 
 ### Question pool
 - How do you determine if the requested website application is complex and requires something like Angular + .NET, compared to it being simple and just requiring WordPress?
 
-- So usually we get data into some page by parsing the URL arguments and then calling the database. But in cases where we need some additional data, how to we move it from one page to another? Do you use cookies or session storage or local storage? Is there some correct way of handling these storage types, like how long they're valid and when they're deleted?
+
 
 - In regards to CSS, how do you learn this well or get used to it as a programmer, who doesn't use it much? I'm guessing this is a things that most developers don't deal with often?
 
 - How do you keep all this knowledge that you accumulate through the years, especially as you don't touch it for several months or years? I think I forgot a decent amount of things due to time.
 
-- How do you deal with different library versions between projects, especially the key ones, like Angular or Node? Do you just install them in the project folder for that project and skip the global versions?
+
 
 - What are some useful extensions for VS Code? How do you find some that actually bring value and don't bloat your IDE?

@@ -41,5 +41,7 @@ app.MapPost("/carpool-entry", (CarpoolEntry entry) => CarpoolEntryController.Cre
 app.MapPut("/carpool-entry", (CarpoolEntry entry) => CarpoolEntryController.UpdateCarpoolEntry(entry));
 app.MapDelete("/carpool-entry/{id}", (int id) => CarpoolEntryController.RemoveCarpoolEntry(id));
 
+app.MapControllers()
+
 
 app.Run();

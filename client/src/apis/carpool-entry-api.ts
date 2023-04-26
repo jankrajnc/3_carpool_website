@@ -11,6 +11,9 @@ export class CarpoolEntryApi {
 
   constructor(public http: HttpClient) { }
 
+  // https://www.kevinboosten.dev/how-i-use-an-openapi-spec-in-my-angular-projects poglej se druge toole
+  // new link: http://localhost:5037/swagger/v1/swagger.json must be full link
+
   private domain = 'http://localhost:5037/';
   private serverUrl = this.domain + 'cars';
 
