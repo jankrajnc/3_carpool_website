@@ -1,22 +1,84 @@
 using System.Collections;
 using Models;
 
-namespace Database {
+namespace Controllers {
 
     // https://learn.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-7.0
     // https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-7.0&amp%3Btabs=visual-studio&tabs=visual-studio
     // https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-7.0&tabs=visual-studio#routing-and-url-paths
 
-    [Route("api/[controller]")]
+    [Route("api/CarpoolEntry")]
+    [ApiController]
     public class CarpoolEntryController : ControllerBase
     {
-
+        rfhngfjgdhjdg
         private static List<CarpoolEntry> _entries = new List<CarpoolEntry>()
        {
          new CarpoolEntry{ Id=1, Date="2023-03-28T00:00:00.000Z", Name="Jan" },
          new CarpoolEntry{ Id=2, Date="2023-04-01T00:00:00.000Z", Name="Gregor"},
          new CarpoolEntry{ Id=3, Date="2023-04-15T00:00:00.000Z", Name="Martin"}
        };
+
+        [HttpGet("")]
+        public async Task<ActionResult<CarpoolEntry>> GetCarpoolEntries()
+        {
+            return _entries;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CarpoolEntry>> CreateCarpoolEntry(int id)
+        {
+            var entry = await _entries.FindAsync(id);
+
+            if (entry == null)
+            {
+                return NotFound();
+            }
+
+            return entry;
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutCarpoolEntry(int id, CarpoolEntry carpoolEntry)
+        {
+            if (id != carpoolEntry.Id)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                await _entries.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TodoItemExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCarpoolEntry(int id)
+        {
+            var entry = await _entries.FindAsync(id);
+            if (entry == null)
+            {
+                return NotFound();
+            }
+
+            _entries.Remove(entry);
+            await _entries.SaveChangesAsync();
+
+            return NoContent();
+        }
 
         public static List<CarpoolEntry> GetCarpoolEntries()
         {
