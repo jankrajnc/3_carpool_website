@@ -1,6 +1,6 @@
 using Microsoft.OpenApi.Models;
-using Models;
-using Database;
+using DataAccess;
+using System.Data.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +14,10 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddCors(options => {});
+builder.Services.AddScoped<PostgresConnector>();
+builder.Services.AddScoped<PostgresConnectorOptions>(new PostgresConnectorOptions { connString = builder.Configuration.GetConnectionString("Postgresql") });
+//builder.Services.AddDbContext<>
+
 
 var app = builder.Build();
 
@@ -41,7 +45,7 @@ app.MapPost("/carpool-entry", (CarpoolEntry entry) => CarpoolEntryController.Cre
 app.MapPut("/carpool-entry", (CarpoolEntry entry) => CarpoolEntryController.UpdateCarpoolEntry(entry));
 app.MapDelete("/carpool-entry/{id}", (int id) => CarpoolEntryController.RemoveCarpoolEntry(id));
 
-app.MapControllers()
+app.MapControllers();
 
 
 app.Run();

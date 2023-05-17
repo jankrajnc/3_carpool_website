@@ -57,13 +57,15 @@ This is a document containing all my questions to my mentor. Their priority is b
 - How do you deal with different library versions between projects, especially the key ones, like Angular or Node? Do you just install them in the project folder for that project and skip the global versions?
     - Node.js, for example, has to be globally installed, but it's forwards and backwards compatible. Angular, however, can be just locally installed. For example you can use the 'npx' ('npx ng version') functionality from 'npm', which tells the application to use the local version instead of the global one, so you can have different versions even with a globally installed library. As an extra trick, 'npx' can also be used to call some library once to use it as a script without loading it into the project.
 
-### Meetup 7 (15.5.2023)
+### Meetup 7 (17.5.2023)
+- How do you keep all this knowledge that you accumulate through the years, especially as you don't touch it for several months or years? I think I forgot a decent amount of things due to time.
+	- Generally I remember the basics and maybe some extra tricks, but I always open the documentation like some 'Getting started' page and go through it. Then I usually start remembering the details, but sometimes I also have to learn new things due things changing in months or years.
 
 ### Question pool
 - How do you determine if the requested website application is complex and requires something like Angular + .NET, compared to it being simple and just requiring WordPress?
 
 - In regards to CSS, how do you learn this well or get used to it as a programmer, who doesn't use it much? I'm guessing this is a things that most developers don't deal with often?
 
-- How do you keep all this knowledge that you accumulate through the years, especially as you don't touch it for several months or years? I think I forgot a decent amount of things due to time.
+
 
 - What are some useful extensions for VS Code? How do you find some that actually bring value and don't bloat your IDE?

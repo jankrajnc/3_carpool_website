@@ -1,4 +1,5 @@
 using System.Collections;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace Controllers {
@@ -7,11 +8,39 @@ namespace Controllers {
     // https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-7.0&amp%3Btabs=visual-studio&tabs=visual-studio
     // https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-7.0&tabs=visual-studio#routing-and-url-paths
 
+    // https://learn.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-7.0#create-controller-and-views
+    // https://learn.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application
+
     [Route("api/CarpoolEntry")]
     [ApiController]
     public class CarpoolEntryController : ControllerBase
+
+                private readonly CarpoolEntryContext _context;
+
+    public CarpoolEntryController(CarpoolEntryContext context)
     {
-        rfhngfjgdhjdg
+        _context = context;
+    }
+
+
+    {
+        PostgresConnector connector = new PostgresConnector();
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            try
+            {
+                var collection = connector.CarpoolEntry.ToList();
+                return Ok(collection);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
         private static List<CarpoolEntry> _entries = new List<CarpoolEntry>()
        {
          new CarpoolEntry{ Id=1, Date="2023-03-28T00:00:00.000Z", Name="Jan" },
