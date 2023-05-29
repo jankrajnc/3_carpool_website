@@ -1,6 +1,8 @@
 using Microsoft.OpenApi.Models;
 using DataAccess;
 using System.Data.Common;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,9 +16,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddCors(options => {});
-builder.Services.AddScoped<ICarpoolEntryRepository>();
-builder.Services.AddScoped<PostgresConnectorOptions>(new PostgresConnectorOptions { connString = builder.Configuration.GetConnectionString("Postgresql") });
-//builder.Services.AddDbContext<>
+builder.Services.AddDbContext<CarpoolContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("Postgresql")));
+builder.Services.AddScoped<ICarpoolEntryRepository, CarpoolEntryRepository>();
 
 
 var app = builder.Build();
@@ -39,11 +40,11 @@ app.UseSwaggerUI(c =>
 });
 
 app.MapGet("/", () => "Hello World!");
-app.MapGet("/carpool-entry/{id}", (int id) => CarpoolEntryController.GetCarpoolEntry(id));
+/*app.MapGet("/carpool-entry/{id}", (int id) => CarpoolEntryController.GetCarpoolEntry(id));
 app.MapGet("/carpool-entry", () => CarpoolEntryController.GetCarpoolEntries());
 app.MapPost("/carpool-entry", (CarpoolEntry entry) => CarpoolEntryController.CreateCarpoolEntry(entry));
 app.MapPut("/carpool-entry", (CarpoolEntry entry) => CarpoolEntryController.UpdateCarpoolEntry(entry));
-app.MapDelete("/carpool-entry/{id}", (int id) => CarpoolEntryController.RemoveCarpoolEntry(id));
+app.MapDelete("/carpool-entry/{id}", (int id) => CarpoolEntryController.RemoveCarpoolEntry(id));*/
 
 app.MapControllers();
 
