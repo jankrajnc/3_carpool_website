@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Models;
+
 namespace DataAccess
 {
     public class CarpoolContext : DbContext
@@ -8,9 +11,9 @@ namespace DataAccess
 
         public DbSet<CarpoolEntry> CarpoolEntries { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            modelBuilder.Entity<CarpoolEntry>().ToTable("CarpoolEntry");
+            optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("ConnectionStrings:Postgresql"));
         }
 
     }

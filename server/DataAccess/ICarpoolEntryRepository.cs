@@ -1,12 +1,13 @@
+using Models;
+
 namespace DataAccess
 {
-    public interface ICarpoolEntryRepository : IDisposable
+    public interface ICarpoolEntryRepository
     {
-        IEnumerable<CarpoolEntry> GetCarpoolEntries();
-        CarpoolEntry GetCarpoolEntryByID(int carpoolEntryId);
-        void InsertCarpoolEntry(CarpoolEntry carpoolEntry);
-        void DeleteCarpoolEntry(int carpoolEntryId);
-        void UpdateCarpoolEntry(CarpoolEntry carpoolEntry);
-        void Save();
+        Task<IEnumerable<CarpoolEntry>> GetCarpoolEntriesAsync();
+        Task<CarpoolEntry> GetCarpoolEntryByIDAsync(int carpoolEntryId);
+        Task InsertCarpoolEntryAsync(CarpoolEntry? carpoolEntry);
+        Task DeleteCarpoolEntryAsync(int carpoolEntryId);
+        Task<bool> UpdateCarpoolEntryAsync(CarpoolEntry carpoolEntry);
     }
 }

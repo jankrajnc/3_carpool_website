@@ -1,63 +1,56 @@
+using Microsoft.EntityFrameworkCore;
+using Models;
+
 namespace DataAccess
 {
-    public class CarpoolEntryRepository : ICarpoolEntryRepository, IDisposable
+    public class CarpoolEntryRepository : ICarpoolEntryRepository
     {
-        private CarpoolEntryContext context;
+        private readonly CarpoolContext context;
 
-        public CarpoolEntryRepository(CarpoolEntryContext context)
+        public CarpoolEntryRepository(CarpoolContext context)
         {
             this.context = context;
         }
 
-        public IEnumerable<Student> GetCarpoolEntries()
+        public async Task<IEnumerable<CarpoolEntry>> GetCarpoolEntriesAsync()
         {
-            return context.CarpoolEntries.ToList();
+            return await context.CarpoolEntries.ToListAsync();
         }
 
-        public Student GetCarpoolEntryByID(int carpoolEntryId)
+        public async Task<CarpoolEntry?> GetCarpoolEntryByIDAsync(int carpoolEntryId)
         {
-            return context.CarpoolEntries.Find(carpoolEntryId);
+            return await context.CarpoolEntries.FindAsync(carpoolEntryId);
         }
 
-        public void InsertCarpoolEntry(CarpoolEntry carpoolEntry)
+        public async Task InsertCarpoolEntryAsync(CarpoolEntry carpoolEntry)
         {
             context.CarpoolEntries.Add(carpoolEntry);
+            await context.SaveChangesAsync();
         }
 
-        public void DeleteCarpoolEntry(int carpoolEntryId)
+        public async Task DeleteCarpoolEntryAsync(int carpoolEntryId)
         {
-            CarpoolEntry carpoolEntry = context.CarpoolEntries.Find(carpoolEntryId);
-            context.CarpoolEntries.Remove(carpoolEntry);
+            CarpoolEntry? carpoolEntry = await context.CarpoolEntries.FindAsync(carpoolEntryId);
+
+            if (carpoolEntry != null)
+            {
+                context.CarpoolEntries.Remove(carpoolEntry);
+                await context.SaveChangesAsync();
+            }
         }
 
-        public void UpdateCarpoolEntry(CarpoolEntry carpoolEntry)
+        public async Task<bool> UpdateCarpoolEntryAsync(CarpoolEntry carpoolEntry)
         {
             context.Entry(carpoolEntry).State = EntityState.Modified;
-        }
+            var result = await context.SaveChangesAsync();
 
-        public void Save()
-        {
-            context.SaveChanges();
-        }
-
-        private bool disposed = false;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
+            if(result == 0)
             {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
+                return false;
             }
-            this.disposed = true;
+
+            return true;
         }
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
     }
 }
