@@ -1,6 +1,6 @@
 ﻿namespace Models { 
 
-	public record CarpoolEntryModel
+	public record CarpoolEntry
 	{
 		public int? Id { get; set; }
 		public string Date { get; set; }
