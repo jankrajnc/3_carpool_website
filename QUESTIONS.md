@@ -66,6 +66,4 @@ This is a document containing all my questions to my mentor. Their priority is b
 
 - In regards to CSS, how do you learn this well or get used to it as a programmer, who doesn't use it much? I'm guessing this is a things that most developers don't deal with often?
 
-
-
 - What are some useful extensions for VS Code? How do you find some that actually bring value and don't bloat your IDE?

@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddCors(options => {});
-builder.Services.AddScoped<PostgresConnector>();
+builder.Services.AddScoped<ICarpoolEntryRepository>();
 builder.Services.AddScoped<PostgresConnectorOptions>(new PostgresConnectorOptions { connString = builder.Configuration.GetConnectionString("Postgresql") });
 //builder.Services.AddDbContext<>
 
