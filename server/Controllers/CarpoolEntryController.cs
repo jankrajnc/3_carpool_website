@@ -11,20 +11,34 @@ namespace Controllers {
     // https://learn.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-7.0#create-controller-and-views
     // https://learn.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application
 
+
+    // TODO
+    // migration for creating the database
+    // connect to db with ef
+    // setup the entire framework
+    // call with the controller
+
+
     [Route("api/CarpoolEntry")]
     [ApiController]
     public class CarpoolEntryController : ControllerBase
-
-                private readonly CarpoolEntryContext _context;
-
-    public CarpoolEntryController(CarpoolEntryContext context)
     {
-        _context = context;
-    }
+        private ICarpoolEntryRepository carpoolContext;
 
+        public CarpoolEntryController()
+        {
+            this.carpoolContext = new CarpoolEntryRepository(new CarpoolContext());
+        }
 
-    {
-        PostgresConnector connector = new PostgresConnector();
+        public CarpoolEntryController(ICarpoolEntryRepository carpoolContext)
+        {
+            this.carpoolContext = carpoolContext;
+        }
+
+        public CarpoolEntryController(CarpoolEntryContext context)
+        {
+            _context = context;
+        }
 
         [HttpGet]
         public IActionResult Get()
