@@ -1,4 +1,6 @@
 using System.Collections;
+using DataAccess;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models;
 
@@ -18,70 +20,56 @@ namespace Controllers {
     // setup the entire framework
     // call with the controller
 
+    // Questions
+    // how to properly setup the controller, in regards to this ActionResult, Ok and Save, Dispose from context
+    // how to link the context properly at startup DONE
+    // how to setup a migration properly, as currently it has some issues with the DB, maybe because the startup setup has to be done before? DONE
+    // maybe a general overview of how everything looks, if it's correct etc DONE
 
-    [Route("api/CarpoolEntry")]
-    [ApiController]
-    public class CarpoolEntryController : ControllerBase
+    // automapper remove X property with auto mapper, NEXT TIME.
+    // map route https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-7.0
+
+    public class CarpoolEntryController : Controller
     {
-        private ICarpoolEntryRepository carpoolContext;
+        private readonly ICarpoolEntryRepository carpoolEntryRepository;
 
         public CarpoolEntryController()
         {
-            this.carpoolContext = new CarpoolEntryRepository(new CarpoolContext());
+            this.carpoolEntryRepository = new CarpoolEntryRepository(new CarpoolContext());
         }
 
-        public CarpoolEntryController(ICarpoolEntryRepository carpoolContext)
+        public CarpoolEntryController(ICarpoolEntryRepository carpoolEntryRepository)
         {
-            this.carpoolContext = carpoolContext;
-        }
-
-        public CarpoolEntryController(CarpoolEntryContext context)
-        {
-            _context = context;
+            this.carpoolEntryRepository = carpoolEntryRepository;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetCarpoolEntries()
         {
-            try
-            {
-                var collection = connector.CarpoolEntry.ToList();
-                return Ok(collection);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-
-        private static List<CarpoolEntry> _entries = new List<CarpoolEntry>()
-       {
-         new CarpoolEntry{ Id=1, Date="2023-03-28T00:00:00.000Z", Name="Jan" },
-         new CarpoolEntry{ Id=2, Date="2023-04-01T00:00:00.000Z", Name="Gregor"},
-         new CarpoolEntry{ Id=3, Date="2023-04-15T00:00:00.000Z", Name="Martin"}
-       };
-
-        [HttpGet("")]
-        public async Task<ActionResult<CarpoolEntry>> GetCarpoolEntries()
-        {
-            return _entries;
+            var entries = await carpoolEntryRepository.GetCarpoolEntriesAsync();
+            return Ok(entries);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<CarpoolEntry>> CreateCarpoolEntry(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetCarpoolEntry(int id)
         {
-            var entry = await _entries.FindAsync(id);
+            if (id < 0) { return BadRequest("Id must be a positive number."); }
 
-            if (entry == null)
-            {
-                return NotFound();
-            }
+            var entry =  await carpoolEntryRepository.GetCarpoolEntryByIDAsync(id);
 
-            return entry;
+            if(entry == null) { return NotFound(); }
+
+            return Ok(entry);
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> PutCarpoolEntry(int id, CarpoolEntry carpoolEntry)
         {
             if (id != carpoolEntry.Id)
@@ -89,21 +77,9 @@ namespace Controllers {
                 return BadRequest();
             }
 
-            try
-            {
-                await _entries.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TodoItemExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            var updated = await carpoolEntryRepository.UpdateCarpoolEntryAsync(carpoolEntry);
+
+            if (!updated) { return NotFound(); }
 
             return NoContent();
         }
@@ -123,39 +99,6 @@ namespace Controllers {
             return NoContent();
         }
 
-        public static List<CarpoolEntry> GetCarpoolEntries()
-        {
-            return _entries;
-        }
-
-        public static CarpoolEntry? GetCarpoolEntry(int id)
-        {
-            return _entries.SingleOrDefault(element => element.Id == id);
-        }
-
-        public static CarpoolEntry CreateCarpoolEntry(CarpoolEntry entry)
-        {
-            _entries.Add(entry);
-            return entry;
-        }
-
-        public static CarpoolEntry UpdateCarpoolEntry(CarpoolEntry entry)
-        {
-            _entries = _entries.Select(element =>
-            {
-                if (element.Id == entry.Id)
-                {
-                    element.Name = entry.Name;
-                }
-                return element;
-            }).ToList();
-            return entry;
-        }
-
-        public static void RemoveCarpoolEntry(int id)
-        {
-            _entries = _entries.FindAll(element => element.Id != id).ToList();
-        }
     }
 
 }
