@@ -14,29 +14,32 @@ namespace DataAccess
 
         public async Task<IEnumerable<CarpoolEntry>> GetCarpoolEntriesAsync()
         {
-            return await context.CarpoolEntries.ToListAsync();
+            return await context.CarpoolEntry.ToListAsync();
         }
 
         public async Task<CarpoolEntry?> GetCarpoolEntryByIDAsync(int carpoolEntryId)
         {
-            return await context.CarpoolEntries.FindAsync(carpoolEntryId);
+            return await context.CarpoolEntry.FindAsync(carpoolEntryId);
         }
 
         public async Task InsertCarpoolEntryAsync(CarpoolEntry carpoolEntry)
         {
-            context.CarpoolEntries.Add(carpoolEntry);
+            context.CarpoolEntry.Add(carpoolEntry);
             await context.SaveChangesAsync();
         }
 
-        public async Task DeleteCarpoolEntryAsync(int carpoolEntryId)
+        public async Task<bool> DeleteCarpoolEntryAsync(int carpoolEntryId)
         {
-            CarpoolEntry? carpoolEntry = await context.CarpoolEntries.FindAsync(carpoolEntryId);
+            CarpoolEntry? carpoolEntry = await context.CarpoolEntry.FindAsync(carpoolEntryId);
 
             if (carpoolEntry != null)
             {
-                context.CarpoolEntries.Remove(carpoolEntry);
+                context.CarpoolEntry.Remove(carpoolEntry);
                 await context.SaveChangesAsync();
+                return true;
             }
+
+            return false;
         }
 
         public async Task<bool> UpdateCarpoolEntryAsync(CarpoolEntry carpoolEntry)
