@@ -13,23 +13,15 @@ namespace Controllers {
     // https://learn.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-7.0#create-controller-and-views
     // https://learn.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application
 
-
-    // TODO
-    // migration for creating the database
-    // connect to db with ef
-    // setup the entire framework
-    // call with the controller
-
-    // Questions
-    // how to properly setup the controller, in regards to this ActionResult, Ok and Save, Dispose from context
-    // how to link the context properly at startup DONE
-    // how to setup a migration properly, as currently it has some issues with the DB, maybe because the startup setup has to be done before? DONE
-    // maybe a general overview of how everything looks, if it's correct etc DONE
-
     // automapper remove X property with auto mapper, NEXT TIME.
     // map route https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-7.0
 
-    public class CarpoolEntryController : Controller
+    // logging?
+    // security?
+
+    [ApiController]
+    [Route("[carpool-entry]")]
+    public class CarpoolEntryController : ControllerBase
     {
         private readonly ICarpoolEntryRepository carpoolEntryRepository;
 
@@ -57,20 +49,36 @@ namespace Controllers {
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetCarpoolEntry(int id)
         {
-            if (id < 0) { return BadRequest("Id must be a positive number."); }
+            if (id < 0) 
+            { 
+                return BadRequest("Id must be a positive number."); 
+            }
 
             var entry =  await carpoolEntryRepository.GetCarpoolEntryByIDAsync(id);
 
-            if(entry == null) { return NotFound(); }
+            if(entry == null) 
+            { 
+                return NotFound(); 
+            }
 
             return Ok(entry);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public Task<IActionResult> InsertCarpoolEntry(CarpoolEntry carpoolEntry)
+        {
+            await carpoolEntryRepository.InsertCarpoolEntryAsync(carpoolEntry);
+
+            return Ok();
         }
 
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> PutCarpoolEntry(int id, CarpoolEntry carpoolEntry)
+        public async Task<IActionResult> UpdateCarpoolEntry(int id, CarpoolEntry carpoolEntry)
         {
             if (id != carpoolEntry.Id)
             {
@@ -79,22 +87,31 @@ namespace Controllers {
 
             var updated = await carpoolEntryRepository.UpdateCarpoolEntryAsync(carpoolEntry);
 
-            if (!updated) { return NotFound(); }
+            if (!updated)
+            {
+                return NotFound();
+            }
 
             return NoContent();
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteCarpoolEntry(int id)
         {
-            var entry = await _entries.FindAsync(id);
-            if (entry == null)
-            {
-                return NotFound();
+            if (id < 0) 
+            { 
+                return BadRequest("Id must be a positive number.");
             }
 
-            _entries.Remove(entry);
-            await _entries.SaveChangesAsync();
+            var deleted = await carpoolEntryRepository.DeleteCarpoolEntryAsync(id);
+
+            if (!updated) 
+            { 
+                return NotFound(); 
+            }
 
             return NoContent();
         }
