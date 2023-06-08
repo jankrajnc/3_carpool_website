@@ -29,9 +29,10 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseStaticFiles();
 app.UseRouting();
+app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapRazorPages();
-
+app.MapControllers();
 
 app.UseSwagger();
 app.UseSwaggerUI(c =>
@@ -45,8 +46,6 @@ app.MapGet("/carpool-entry", () => CarpoolEntryController.GetCarpoolEntries());
 app.MapPost("/carpool-entry", (CarpoolEntry entry) => CarpoolEntryController.CreateCarpoolEntry(entry));
 app.MapPut("/carpool-entry", (CarpoolEntry entry) => CarpoolEntryController.UpdateCarpoolEntry(entry));
 app.MapDelete("/carpool-entry/{id}", (int id) => CarpoolEntryController.RemoveCarpoolEntry(id));*/
-
-app.MapControllers();
 
 
 app.Run();

@@ -9,7 +9,7 @@ namespace DataAccess
         {
         }
 
-        public DbSet<CarpoolEntry> CarpoolEntries { get; set; }
+        public DbSet<CarpoolEntry> CarpoolEntry { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
