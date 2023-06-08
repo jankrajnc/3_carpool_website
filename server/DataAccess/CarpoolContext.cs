@@ -9,6 +9,10 @@ namespace DataAccess
         {
         }
 
+        public CarpoolContext(DbContextOptions<CarpoolContext> options) : base(options)
+        {
+        }
+
         public DbSet<CarpoolEntry> CarpoolEntry { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

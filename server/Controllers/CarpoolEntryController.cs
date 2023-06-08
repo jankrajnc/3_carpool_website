@@ -18,7 +18,7 @@ namespace Controllers {
     // security?
 
     [ApiController]
-    [Route("[carpool-entry]")]
+    [Route("[controller]")]
     public class CarpoolEntryController : ControllerBase
     {
         private readonly ICarpoolEntryRepository carpoolEntryRepository;
