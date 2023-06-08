@@ -1,7 +1,5 @@
-using System.Collections;
 using DataAccess;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace Controllers {
@@ -67,7 +65,7 @@ namespace Controllers {
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public Task<IActionResult> InsertCarpoolEntry(CarpoolEntry carpoolEntry)
+        public async Task<IActionResult> InsertCarpoolEntry(CarpoolEntry carpoolEntry)
         {
             await carpoolEntryRepository.InsertCarpoolEntryAsync(carpoolEntry);
 
@@ -108,7 +106,7 @@ namespace Controllers {
 
             var deleted = await carpoolEntryRepository.DeleteCarpoolEntryAsync(id);
 
-            if (!updated) 
+            if (!deleted) 
             { 
                 return NotFound(); 
             }
