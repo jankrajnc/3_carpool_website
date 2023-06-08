@@ -12,7 +12,7 @@ namespace server.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "CarpoolEntries",
+                name: "CarpoolEntry",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -22,17 +22,26 @@ namespace server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CarpoolEntries", x => x.Id);
+                    table.PrimaryKey("PK_CarpoolEntry", x => x.Id);
                 });
 
-            migrationBuilder.InsertData();
+            migrationBuilder.InsertData(
+                table: "CarpoolEntry",
+                columns: new[] { "Id", "Date", "Name" },
+                values: new object[,]
+                {
+                { 1, "2023-03-28T00:00:00.000Z", "Jan" },
+                { 2, "2023-04-01T00:00:00.000Z", "Gregor" },
+                { 3, "2023-04-15T00:00:00.000Z", "Martin" },
+                { 4, "2023-06-04T00:00:00.000Z", "Peter" }
+            });
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CarpoolEntries");
+                name: "CarpoolEntry");
         }
     }
 }
