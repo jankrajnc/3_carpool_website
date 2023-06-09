@@ -4,29 +4,11 @@ using Models;
 
 namespace Controllers {
 
-    // https://learn.microsoft.com/en-us/aspnet/core/mvc/overview?view=aspnetcore-7.0
-    // https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-7.0&amp%3Btabs=visual-studio&tabs=visual-studio
-    // https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-7.0&tabs=visual-studio#routing-and-url-paths
-
-    // https://learn.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-7.0#create-controller-and-views
-    // https://learn.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application
-
-    // automapper remove X property with auto mapper, NEXT TIME.
-    // map route https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-7.0
-
-    // logging?
-    // security?
-
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class CarpoolEntryController : ControllerBase
     {
         private readonly ICarpoolEntryRepository carpoolEntryRepository;
-
-        public CarpoolEntryController()
-        {
-            this.carpoolEntryRepository = new CarpoolEntryRepository(new CarpoolContext());
-        }
 
         public CarpoolEntryController(ICarpoolEntryRepository carpoolEntryRepository)
         {
@@ -78,7 +60,7 @@ namespace Controllers {
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateCarpoolEntry(int id, CarpoolEntry carpoolEntry)
         {
-            if (id != carpoolEntry.Id)
+            if (id != carpoolEntry.ID)
             {
                 return BadRequest();
             }

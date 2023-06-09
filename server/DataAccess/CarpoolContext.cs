@@ -5,10 +5,6 @@ namespace DataAccess
 {
     public class CarpoolContext : DbContext
     {
-        public CarpoolContext()
-        {
-        }
-
         public CarpoolContext(DbContextOptions<CarpoolContext> options) : base(options)
         {
         }
@@ -17,7 +13,12 @@ namespace DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("ConnectionStrings:Postgresql"));
+            //optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("ConnectionStrings:Postgresql"));
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CarpoolEntry>().ToTable("CarpoolEntry");
         }
 
     }
