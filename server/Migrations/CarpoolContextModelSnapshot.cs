@@ -24,23 +24,22 @@ namespace server.Migrations
 
             modelBuilder.Entity("Models.CarpoolEntry", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
-                    b.Property<string>("Date")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
-                    b.ToTable("CarpoolEntries");
+                    b.ToTable("CarpoolEntry", (string)null);
                 });
 #pragma warning restore 612, 618
         }

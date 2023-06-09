@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -15,25 +16,25 @@ namespace server.Migrations
                 name: "CarpoolEntry",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    ID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Date = table.Column<string>(type: "text", nullable: false),
+                    Date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CarpoolEntry", x => x.Id);
+                    table.PrimaryKey("PK_CarpoolEntry", x => x.ID);
                 });
 
             migrationBuilder.InsertData(
                 table: "CarpoolEntry",
-                columns: new[] { "Id", "Date", "Name" },
+                columns: new[] { "ID", "Date", "Name" },
                 values: new object[,]
                 {
-                { 1, "2023-03-28T00:00:00.000Z", "Jan" },
-                { 2, "2023-04-01T00:00:00.000Z", "Gregor" },
-                { 3, "2023-04-15T00:00:00.000Z", "Martin" },
-                { 4, "2023-06-04T00:00:00.000Z", "Peter" }
+                { 1, DateTime.Parse("2023-03-28T00:00:00.000Z").ToUniversalTime(), "Jan" },
+                { 2, DateTime.Parse("2023-04-01T00:00:00.000Z").ToUniversalTime(), "Gregor" },
+                { 3, DateTime.Parse("2023-04-15T00:00:00.000Z").ToUniversalTime(), "Martin" },
+                { 4, DateTime.Parse("2023-06-04T00:00:00.000Z").ToUniversalTime(), "Peter" }
             });
         }
 
