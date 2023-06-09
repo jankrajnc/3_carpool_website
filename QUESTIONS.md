@@ -60,6 +60,10 @@ This is a document containing all my questions to my mentor. Their priority is b
 ### Meetup 7 (17.5.2023)
 - How do you keep all this knowledge that you accumulate through the years, especially as you don't touch it for several months or years? I think I forgot a decent amount of things due to time.
 	- Generally I remember the basics and maybe some extra tricks, but I always open the documentation like some 'Getting started' page and go through it. Then I usually start remembering the details, but sometimes I also have to learn new things due things changing in months or years.
+	
+### Meetup 9 (9.6.2023)
+- How do you deal with the security of an application?
+	- Generally you should follow the latest coding practices based on the documentation and you should regularly update libraries, especially those with known vulnerabilities. Doing this basically ensures that your application is secure and can't be broken just like that. The main sore point of an application is generally the registration/login part. Here you often use some authentication/authorization library from Microsoft or Google, but you can also write your own code for it, either completely or partially. So with this part you have to be careful especially with anything you're doing on your own, but also if you're using libraries, you want to follow their procedures.
 
 ### Question pool
 - How do you determine if the requested website application is complex and requires something like Angular + .NET, compared to it being simple and just requiring WordPress?
