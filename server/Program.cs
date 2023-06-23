@@ -39,3 +39,5 @@ app.UseSwaggerUI(c =>
 app.MapControllers();
 
 app.Run();
+
+// openapi-generator-cli generate -g ruby -i http://localhost:5037/swagger/v1/swagger.json -o C:\Projects\Mentorstvo\3_carpool_website\client\src\apis

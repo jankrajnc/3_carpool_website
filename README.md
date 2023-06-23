@@ -23,7 +23,8 @@
   - **Database:**
     - PostgreSQL => I don't see the application have anything so specific that we would have to use NoSQL databases. I think the full use case should be easily covered by a relational database. Maybe I'd add Redis later to practice caching, but I don't think it would be practically needed.
   - **Other**:
-    - Git + GitHub => Version control
+    - Git + GitHub => Version control.
+    - OpenApi Generator CLI (https://www.npmjs.com/package/@openapitools/openapi-generator-cli) -> Generating the frontend API from Swagger URL.
 	
 #### Libraries:
   - **Frontend:**

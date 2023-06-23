@@ -13,6 +13,8 @@ import { CarpoolGroupComponent } from '../pages/carpool-group/carpool-group.comp
 import { DeletionDialogComponent } from '../components/dialogs/deletion-dialog/deletion-dialog.component';
 import { CarpoolEntryDialogComponent } from '../components/dialogs/carpool-entry-dialog/carpool-entry-dialog.component';
 
+import { CarpoolEntryApi } from '../apis/lib/openapi_client/api';
+
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { CarpoolEntryDialogComponent } from '../components/dialogs/carpool-entry
     AppRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CarpoolEntryApi
   ],
   providers: [],
   bootstrap: [AppComponent]
