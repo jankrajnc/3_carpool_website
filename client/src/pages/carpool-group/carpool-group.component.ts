@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CarpoolEntryService } from 'src/apis/generated2';
 import { CarpoolEntryDialogComponent } from 'src/components/dialogs/carpool-entry-dialog/carpool-entry-dialog.component';
 import { DeletionDialogComponent } from 'src/components/dialogs/deletion-dialog/deletion-dialog.component';
 import { CarpoolEntry } from 'src/models/carpool-entry';
+
+
 
 const CARPOOL_ENTRY_DATA: CarpoolEntry[] = [
   {id: 1, date: new Date("2023-02-22").toISOString().split('T')[0], name: 'Grega'},
@@ -17,15 +20,19 @@ const CARPOOL_ENTRY_DATA: CarpoolEntry[] = [
 })
 export class CarpoolGroupComponent {
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public carpoolEntryApi: CarpoolEntryService) {}
 
   public displayedColumns: string[] = ['date', 'name', 'actions'];
   public dataSource = CARPOOL_ENTRY_DATA;
 
   public addEntry(): void {
-    const entryDialog = this.dialog.open(CarpoolEntryDialogComponent);
+    /*const entryDialog = this.dialog.open(CarpoolEntryDialogComponent);
 
     entryDialog.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });*/
+    this.carpoolEntryApi.apiCarpoolEntryGet().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result);
     });

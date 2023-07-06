@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MaterialModule} from '../assets/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,10 +13,7 @@ import { CarpoolGroupComponent } from '../pages/carpool-group/carpool-group.comp
 
 import { DeletionDialogComponent } from '../components/dialogs/deletion-dialog/deletion-dialog.component';
 import { CarpoolEntryDialogComponent } from '../components/dialogs/carpool-entry-dialog/carpool-entry-dialog.component';
-
-import { CarpoolEntryApi } from '../apis/lib/openapi_client/api';
-
-
+import { BASE_PATH } from 'src/apis/generated2';
 
 @NgModule({
   declarations: [
@@ -32,9 +30,9 @@ import { CarpoolEntryApi } from '../apis/lib/openapi_client/api';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    CarpoolEntryApi
+    HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: BASE_PATH, useValue: "localhost:5037" }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

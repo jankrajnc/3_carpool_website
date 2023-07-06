@@ -1,0 +1,15 @@
+.gitignore
+.openapi-generator-ignore
+README.md
+api.module.ts
+api/api.ts
+api/carpoolEntry.service.ts
+configuration.ts
+encoder.ts
+git_push.sh
+index.ts
+model/carpoolEntry.ts
+model/models.ts
+model/problemDetails.ts
+param.ts
+variables.ts

@@ -5,6 +5,19 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+/*builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+        });
+});*/
+builder.Services.AddCors();
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -12,8 +25,6 @@ builder.Services.AddSwaggerGen(c =>
 {
      c.SwaggerDoc("v1", new OpenApiInfo { Title = "Carpool application API", Description = "API for the Carpool application", Version = "v1" });
 });
-
-builder.Services.AddCors(options => {});
 builder.Services.AddDbContext<CarpoolContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("Postgresql")));
 builder.Services.AddScoped<ICarpoolEntryRepository, CarpoolEntryRepository>();
 
@@ -25,6 +36,7 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
 }
+app.UseCors(options => options.WithOrigins("*").AllowAnyMethod());
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
@@ -39,5 +51,3 @@ app.UseSwaggerUI(c =>
 app.MapControllers();
 
 app.Run();
-
-// openapi-generator-cli generate -g ruby -i http://localhost:5037/swagger/v1/swagger.json -o C:\Projects\Mentorstvo\3_carpool_website\client\src\apis
