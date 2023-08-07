@@ -15,7 +15,7 @@ export class CarpoolEntryApi {
   // new link: http://localhost:5037/swagger/v1/swagger.json must be full link
 
   private domain = 'http://localhost:5037/';
-  private serverUrl = this.domain + 'cars';
+  private serverUrl = this.domain + 'carpool-entry';
 
   public getCarpoolEntries() {
     return this.http.get<CarpoolEntry[]>(this.serverUrl);

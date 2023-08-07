@@ -1,4 +1,4 @@
-using System.Collections;
+using Microsoft.AspNetCore.Mvc;
 using Models;
 
 namespace Database {
@@ -11,7 +11,7 @@ namespace Database {
     public class CarpoolEntryController : ControllerBase
     {
 
-        private static List<CarpoolEntry> _entries = new List<CarpoolEntry>()
+        private static List<CarpoolEntry> _entries = new()
        {
          new CarpoolEntry{ Id=1, Date="2023-03-28T00:00:00.000Z", Name="Jan" },
          new CarpoolEntry{ Id=2, Date="2023-04-01T00:00:00.000Z", Name="Gregor"},

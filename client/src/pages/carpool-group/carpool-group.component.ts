@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CarpoolEntryApi } from 'src/apis/carpool-entry-api';
 import { CarpoolEntryDialogComponent } from 'src/components/dialogs/carpool-entry-dialog/carpool-entry-dialog.component';
 import { DeletionDialogComponent } from 'src/components/dialogs/deletion-dialog/deletion-dialog.component';
 import { CarpoolEntry } from 'src/models/carpool-entry';
@@ -17,18 +19,23 @@ const CARPOOL_ENTRY_DATA: CarpoolEntry[] = [
 })
 export class CarpoolGroupComponent {
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public httpClient: HttpClient) {}
 
   public displayedColumns: string[] = ['date', 'name', 'actions'];
   public dataSource = CARPOOL_ENTRY_DATA;
+  private carpoolEntryApi: CarpoolEntryApi = new CarpoolEntryApi(this.httpClient);
 
   public addEntry(): void {
-    const entryDialog = this.dialog.open(CarpoolEntryDialogComponent);
+    this.carpoolEntryApi.getCarpoolEntries().subscribe((result: any) => {
+      console.log(result);
+    });
+
+    /*const entryDialog = this.dialog.open(CarpoolEntryDialogComponent);
 
     entryDialog.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result);
-    });
+    });*/
   }
 
   public editEntry(selectedRow: CarpoolEntry): void{

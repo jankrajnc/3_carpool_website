@@ -22,6 +22,12 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
 }
+
+app.UseCors(builder => builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
+
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
@@ -41,7 +47,7 @@ app.MapPost("/carpool-entry", (CarpoolEntry entry) => CarpoolEntryController.Cre
 app.MapPut("/carpool-entry", (CarpoolEntry entry) => CarpoolEntryController.UpdateCarpoolEntry(entry));
 app.MapDelete("/carpool-entry/{id}", (int id) => CarpoolEntryController.RemoveCarpoolEntry(id));
 
-app.MapControllers()
+app.MapControllers();
 
 
 app.Run();
