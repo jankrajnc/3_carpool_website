@@ -13,7 +13,7 @@ import { CarpoolGroupComponent } from '../pages/carpool-group/carpool-group.comp
 
 import { DeletionDialogComponent } from '../components/dialogs/deletion-dialog/deletion-dialog.component';
 import { CarpoolEntryDialogComponent } from '../components/dialogs/carpool-entry-dialog/carpool-entry-dialog.component';
-import { BASE_PATH } from 'src/apis/generated2';
+import { BASE_PATH } from 'src/apis/generated';
 
 @NgModule({
   declarations: [

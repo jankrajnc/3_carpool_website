@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CarpoolEntryService } from 'src/apis/generated2';
+import { CarpoolEntryService } from 'src/apis/generated';
 import { CarpoolEntryDialogComponent } from 'src/components/dialogs/carpool-entry-dialog/carpool-entry-dialog.component';
 import { DeletionDialogComponent } from 'src/components/dialogs/deletion-dialog/deletion-dialog.component';
 import { CarpoolEntry } from 'src/models/carpool-entry';
