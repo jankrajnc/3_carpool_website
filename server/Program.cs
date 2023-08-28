@@ -1,7 +1,6 @@
-using Microsoft.OpenApi.Models;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,25 +14,16 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddDbContext<CarpoolContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("Postgresql")));
 builder.Services.AddScoped<ICarpoolEntryRepository, CarpoolEntryRepository>();
-
 builder.Services.AddCors();
 
 var app = builder.Build();
-app.UseCors(x => x.AllowAnyMethod()
-                  .AllowAnyHeader()
-                  .SetIsOriginAllowed(origin => true) // allow any origin
-                  .AllowCredentials());
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-}
 
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 app.MapRazorPages();
+
+app.UseCors(options => options.WithOrigins("*").AllowAnyMethod());
 
 app.UseSwagger();
 app.UseSwaggerUI(c =>
@@ -44,3 +34,5 @@ app.UseSwaggerUI(c =>
 app.MapControllers();
 
 app.Run();
+
+//(test

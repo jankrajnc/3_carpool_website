@@ -1,5 +1,4 @@
 using DataAccess;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 
@@ -7,7 +6,6 @@ namespace Controllers {
 
     [ApiController]
     [Route("api/[controller]")]
-    [EnableCors("OpenCorsPolicy")]
     public class CarpoolEntryController : ControllerBase
     {
         private readonly ICarpoolEntryRepository carpoolEntryRepository;
