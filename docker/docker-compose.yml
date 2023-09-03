@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+
+  postgres:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+    ports:
+      - '5433:5433'
+    #volumes: 
+      #- db:/var/lib/postgresql/data
+      
+  server:
+    image: server
+    build:
+      context: ..\server\.
+      dockerfile: Dockerfile
+    ports:
+      - '5037:80'
+      
+  client:
+    image: client
+    build:
+      context: ..\client\.
+      dockerfile: Dockerfile
+    ports:
+      - '4200:80'
+      
+#volumes:
+
+  #postgres:
+    #driver: local
