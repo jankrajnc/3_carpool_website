@@ -9,15 +9,27 @@ services:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
     ports:
-      - '5433:5433'
-    #volumes: 
-      #- db:/var/lib/postgresql/data
-      
+      - '5433:5432'
+    volumes: 
+      - postgres_data:/var/lib/postgresql/data
+
+  postgres-init:
+    image: postgres-init
+    build:
+      context: ..\.
+      dockerfile: Dockerfile.database
+    depends_on:
+      - postgres
+  
   server:
     image: server
     build:
       context: ..\server\.
       dockerfile: Dockerfile
+    depends_on:
+      - postgres-init
+    environment:
+      - ConnectionStrings__Postgresql=Host=host.docker.internal;Database=carpool_website;Port=5433;Username=root;Password=root
     ports:
       - '5037:80'
       
@@ -26,10 +38,10 @@ services:
     build:
       context: ..\client\.
       dockerfile: Dockerfile
+    depends_on:
+      - server
     ports:
       - '4200:80'
-      
-#volumes:
-
-  #postgres:
-    #driver: local
+ 
+volumes:
+  postgres_data:

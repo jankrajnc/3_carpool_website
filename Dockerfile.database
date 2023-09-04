@@ -1,0 +1,6 @@
+FROM mcr.microsoft.com/dotnet/sdk:7.0
+RUN dotnet tool install --global dotnet-ef
+ENV PATH="${PATH}:/root/.dotnet/tools"
+WORKDIR /app
+COPY server ./
+ENTRYPOINT ["dotnet", "ef", "database", "update", "--connection", "Host=host.docker.internal;Database=carpool_website;Port=5433;Username=root;Password=root"]
