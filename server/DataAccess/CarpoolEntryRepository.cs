@@ -12,12 +12,14 @@ namespace DataAccess
             this.context = context;
         }
 
+        //https://learn.microsoft.com/en-us/aspnet/core/performance/caching/response?view=aspnetcore-7.0
+            //https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-7.0
         public async Task<IEnumerable<CarpoolEntry>> GetCarpoolEntriesAsync()
         {
             return await context.CarpoolEntry.ToListAsync();
         }
 
-        public async Task<CarpoolEntry?> GetCarpoolEntryByIDAsync(int carpoolEntryId)
+        public async Task<CarpoolEntry?> GetCarpoolEntryByIdAsync(int carpoolEntryId)
         {
             return await context.CarpoolEntry.FindAsync(carpoolEntryId);
         }

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DataConverterModule } from './data-converter.module';
 
 describe('DataConverterModule', () => {

@@ -14,6 +14,7 @@ import { CarpoolGroupComponent } from '../pages/carpool-group/carpool-group.comp
 import { DeletionDialogComponent } from '../components/dialogs/deletion-dialog/deletion-dialog.component';
 import { CarpoolEntryDialogComponent } from '../components/dialogs/carpool-entry-dialog/carpool-entry-dialog.component';
 import { BASE_PATH } from 'src/apis/generated';
+import { DataConverterModule } from 'src/utils/data-converter.module';
 
 @NgModule({
   declarations: [
@@ -30,9 +31,10 @@ import { BASE_PATH } from 'src/apis/generated';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DataConverterModule
   ],
-  providers: [{ provide: BASE_PATH, useValue: "localhost:5037" }],
+  providers: [{ provide: BASE_PATH, useValue: "http://localhost:5037" }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

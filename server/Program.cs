@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddDbContext<CarpoolContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("Postgresql")));
 builder.Services.AddScoped<ICarpoolEntryRepository, CarpoolEntryRepository>();
+builder.Services.AddScoped<IUtilityRepository, UtilityRepository>();
 builder.Services.AddCors();
 
 var app = builder.Build();
@@ -35,4 +36,4 @@ app.MapControllers();
 
 app.Run();
 
-//(test
+// add request.http file za testiranje brez front enda

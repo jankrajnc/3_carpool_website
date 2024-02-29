@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource" class="table-container mat-elevation-z8">
+<table mat-table [dataSource]="carpoolData" class="table-container mat-elevation-z8">
 
   <ng-container matColumnDef="date">
     <th mat-header-cell *matHeaderCellDef> Date </th>
@@ -26,7 +26,7 @@
   <button mat-raised-button color="primary" (click)="addEntry()">Add</button>
   <p>
     <b>
-      Driver recommendation: XXX
+      Driver recommendation: {{recommendedDriver}}
     </b>
   </p>
 </div>

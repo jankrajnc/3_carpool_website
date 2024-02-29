@@ -34,7 +34,7 @@ namespace Controllers {
                 return BadRequest("Id must be a positive number."); 
             }
 
-            var entry =  await carpoolEntryRepository.GetCarpoolEntryByIDAsync(id);
+            var entry =  await carpoolEntryRepository.GetCarpoolEntryByIdAsync(id);
 
             if(entry == null) 
             { 

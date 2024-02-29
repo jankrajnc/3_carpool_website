@@ -34,7 +34,9 @@ namespace server.Migrations
                 { 1, DateTime.Parse("2023-03-28T00:00:00.000Z").ToUniversalTime(), "Jan" },
                 { 2, DateTime.Parse("2023-04-01T00:00:00.000Z").ToUniversalTime(), "Gregor" },
                 { 3, DateTime.Parse("2023-04-15T00:00:00.000Z").ToUniversalTime(), "Martin" },
-                { 4, DateTime.Parse("2023-06-04T00:00:00.000Z").ToUniversalTime(), "Peter" }
+                { 4, DateTime.Parse("2023-06-04T00:00:00.000Z").ToUniversalTime(), "Peter" },
+                { 5, DateTime.Parse("2023-09-20T00:00:00.000Z").ToUniversalTime(), "Jan" },
+                { 6, DateTime.Parse("2023-10-09T00:00:00.000Z").ToUniversalTime(), "Peter" }
             });
         }
 

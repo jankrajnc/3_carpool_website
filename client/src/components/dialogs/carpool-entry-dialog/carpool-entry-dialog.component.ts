@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CarpoolEntry } from 'src/models/carpool-entry';
+import { CarpoolEntry } from 'src/apis/generated';
+
 
 @Component({
   selector: 'app-carpool-entry-dialog',
@@ -9,12 +10,9 @@ import { CarpoolEntry } from 'src/models/carpool-entry';
 })
 export class CarpoolEntryDialogComponent {
 
-  constructor(
-    public dialogRef: MatDialogRef<CarpoolEntryDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: CarpoolEntry,
-  )
+  constructor(public dialogRef: MatDialogRef<CarpoolEntryDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: CarpoolEntry)
   {
-    if(this.data == null){
+    if(this.data == null) {
       this.data = {name: '', date: new Date().toISOString().split('T')[0]};
     }
   }
