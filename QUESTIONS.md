@@ -65,7 +65,7 @@ This is a document containing all my questions to my mentor. Their priority is b
 - How do you deal with the security of an application?
 	- Generally you should follow the latest coding practices based on the documentation and you should regularly update libraries, especially those with known vulnerabilities. Doing this basically ensures that your application is secure and can't be broken just like that. The main sore point of an application is generally the registration/login part. Here you often use some authentication/authorization library from Microsoft or Google, but you can also write your own code for it, either completely or partially. So with this part you have to be careful especially with anything you're doing on your own, but also if you're using libraries, you want to follow their procedures.
 
-### Meetup X (23.10.2023)
+### Meetup 14 (23.10.2023)
 - In regards to CSS, how do you learn this well or get used to it as a programmer, who doesn't use it much? I'm guessing this is a things that most developers don't deal with often?
     - There are 2 parts to CSS. The first part are the basics (like colors, borders, etc.) and the second part are some features (like positioning). The first part is easy, but for the second part you have to learn the logic. The main things are positions and flexboxes. You need to figure out what makes sense to use in some part of the application. You also need to figure out how these elements work with other elements, like the width attribute is used differently between a div and a flexbox.
 
@@ -76,7 +76,5 @@ ce ni match med bootstrapom pa tvojo kodo, pol kopiras bootstrap element, pa dod
 
 - When dealing with data from the database, I often noticed, that we get all data from the database, but then filtering is done mostly in the code. Why is that, and when do you do something with an SQL query and when in the code?
     - In most cases, filtering and data reduction should be done in the database. 
-    - One of the main exceptions is connecting data, since it's easier to do it in the code. 
+    - One of the main exceptions is connecting data, since it's easier to do it in the code.
     - Another exception is if you have a lot of data in the database, in this case the database might not even be able to handle some request, but the code can.
-
-izjeme so povezovanje, ki je lazje narediti v kodi; recimo vrstice z arrayi, ki so v drugi tabeli; duplikate je lazje handlat v kodi; za kodo vrnes samo IDje in potem v kodi matchas in dobis podatke, naceloma boljse kot pa v bazi vracati duplikate
