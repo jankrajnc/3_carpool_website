@@ -4,7 +4,6 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -35,5 +34,3 @@ app.UseSwaggerUI(c =>
 app.MapControllers();
 
 app.Run();
-
-// add request.http file za testiranje brez front enda
